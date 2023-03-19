@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_19_061646) do
+ActiveRecord::Schema.define(version: 2023_03_19_075416) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "post_code"
+    t.string "address"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,7 +33,7 @@ ActiveRecord::Schema.define(version: 2023_03_19_061646) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "cart_item", force: :cascade do |t|
+  create_table "cart_items", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "item_id"
     t.integer "quantity"
@@ -64,6 +73,29 @@ ActiveRecord::Schema.define(version: 2023_03_19_061646) do
     t.text "text"
     t.boolean "status"
     t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "order_id"
+    t.integer "quantity"
+    t.integer "making_status"
+    t.integer "purchase_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "post_code"
+    t.string "address"
+    t.string "name"
+    t.integer "total_cost"
+    t.integer "postage"
+    t.integer "payment_method"
+    t.integer "order_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
