@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   
   root to: 'public/homes#top'
   get "homes/about" => "homes#about", as: "about"
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
     
   end
   
-   
+
    #管理者
    namespace :admin do
      resources :items, only: [:index, :show, :new, :create, :update, :edit]
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
      resources :customers, only: [:index, :show, :update, :edit]
      resources :orders, only: [:update, :show]
    end
+
    
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
 end
+
