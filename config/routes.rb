@@ -1,22 +1,30 @@
 Rails.application.routes.draw do
 
-  root to: 'homes#top'
+  
+  root to: 'public/homes#top'
   get "homes/about" => "homes#about", as: "about"
   devise_for :admins
   devise_for :customers
-  devise_for :users
-  #顧客
-  resources :items, only: [:index, :show]
-  resources :cart_item, only: [:new, :create, :index, :show, :destroy]do
-    delete 'desstroy_all'
+  
+  
+ 
+ #顧客 
+  scope module: :public do
+     resources :items, only: [:index, :show]
+     resources :cart_item, only: [:new, :create, :index, :show, :destroy]
+      delete "cart_items/destroy_all" => "cart_items#destroy_all"
+  
+  
+  resources :orders, only: [:new, :create, :index, :show]
+    post "orders/confirm" => "orders#confirm"
+    get "orders/thanks" => "orders#thanks"
+ 
+  
+  resources :addresses, only: [:create, :index, :edit, :update, :destroy]
+    
   end
+  
 
-  resources :orders, only: [:new, :create, :index, :show,]do
-    post 'confirm'
-    get 'thanks'
-  end
-
-   resources :addresses, only: [:create, :index, :edit, :uodate, :destroy]
    #管理者
    namespace :admin do
      resources :items, only: [:index, :show, :new, :create, :update, :edit]
@@ -25,6 +33,7 @@ Rails.application.routes.draw do
      resources :orders, only: [:update, :show]
    end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+   
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
 end
 
