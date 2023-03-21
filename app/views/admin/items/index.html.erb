@@ -1,0 +1,43 @@
+<h1>Item index</h1>
+
+<table>
+  <thead>
+    <th center>
+<!--newページへのリンク-->
+<%= link_to "商品の追加", new_admin_item_path %>
+</th>
+</thead>
+
+<!--一覧表示-->
+
+
+<tbody>
+  <th>
+    <td>商品画像</td>
+    <td>商品名</td>
+    <td>詳細文</td>
+    <td>税込価格</td>
+    <td>販売状況</td>
+  </th>
+  <% @items.each do |item| %>
+  <th>
+   <td>
+  <!--画像挿入-->
+  <% if @item.image.attached? %> <!--画像を持っているかのチェック-->
+  <%= image_tag item.image, size: "100*100" %>
+  <% end %>
+    </td>
+  
+    <!--showページへのリンク-->
+    <td>
+      <%=link_to item_path(:id) do %>
+      <%= item.name %>
+      <% end %>
+      </td>
+    <td><%= item.text %></td>
+    <td><%= item.price %></td>
+    <td><%= item.status %></td>
+  </th>
+  <% end %>
+</tbody>
+</table>
