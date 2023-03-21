@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   
  
-  root to: 'homes#top'
+  
   get "homes/about" => "homes#about", as: "about"
   
 
@@ -32,7 +32,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  
   
   resources :addresses, only: [:create, :index, :edit, :update, :destroy]
-    
+   root "homes#top" 
   end
   
 
@@ -42,6 +42,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      resources :genres, only: [:index, :create, :update, :edit]
      resources :customers, only: [:index, :show, :update, :edit]
      resources :orders, only: [:update, :show]
+     get "/" => "homes#top"
    end
 
    
