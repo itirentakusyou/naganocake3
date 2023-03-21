@@ -44,6 +44,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      resources :orders, only: [:update, :show]
      get "/" => "homes#top"
    end
+   
+   
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
