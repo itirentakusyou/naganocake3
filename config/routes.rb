@@ -21,18 +21,31 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  
  #顧客 
   scope module: :public do
+   root "homes#top" 
+   
+    # 会員
+      get "customers/out" => "customers#out" #顧客の退会確認画面
+      patch "customers/withdraw" => "customers#withdraw" #顧客の退会処理(ステータスの更新)
+      get "customers/my_page" => "customers#show"
+      get "customers/information/edit" => "customers#edit"
+      patch "customers/information" => "customers#update"
+    
+    #商品
      resources :items, only: [:index, :show]
+     
+    #カート内アイテム
      resources :cart_item, only: [:new, :create, :index, :show, :destroy]
       delete "cart_items/destroy_all" => "cart_items#destroy_all"
   
-  
-  resources :orders, only: [:new, :create, :index, :show]
+   #注文
+    resources :orders, only: [:new, :create, :index, :show]
     post "orders/confirm" => "orders#confirm"
     get "orders/complete" => "orders#complete"
  
-  
-  resources :addresses, only: [:create, :index, :edit, :update, :destroy]
-   root "homes#top" 
+   #配送先
+    resources :addresses, only: [:create, :index, :edit, :update, :destroy]
+   
+   
   end
   
 
