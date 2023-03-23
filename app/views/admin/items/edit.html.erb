@@ -1,0 +1,18 @@
+<h1>Item edit</h1>
+<!--エラー文->
+<% if @item.errors.any? %>
+  <%= @item.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!--共有テンプレート-->
+<%= render 'input', item: @item %>
+
+<!--一つ前のページに戻る-->
+<%= link_to :back do %>
+  <button>戻る</button>
+<% end %>

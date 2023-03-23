@@ -1,0 +1,10 @@
+<h1>Item show</h1>
+<%= flash[:notice] %>
+<!--編集画面表示-->
+<%= render 'input', item: @item %>
+
+
+<!--一つ前のページに戻る-->
+<%= link_to :back do %>
+  <button>戻る</button>
+<% end %>
