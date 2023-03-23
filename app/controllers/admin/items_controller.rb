@@ -11,9 +11,11 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:notice] = "投稿が成功しました"
       redirect_to admin_items_path
     else
-      redirect_back(fallback_location: root_path)
+      flash[:genre_created_error] = "ジャンル名を入力してください"
+      render :new
     end
 
     def show
@@ -27,9 +29,10 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to admin_item_path(@item), notice: 'Item is update'
+      flash[:notice] = "更新できました"
+      redirect_to admin_item_path(@item)
     else
-      redirect_back(fallback_location: root_path)
+      render :edit
       @item.Item.find(params[:id])
     end
   end

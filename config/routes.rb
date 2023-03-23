@@ -38,14 +38,14 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
    #管理者
    namespace :admin do
-     resources :items, only: [:index, :show, :new, :create, :update, :edit]
-     resources :genres, only: [:index, :create, :update, :edit]
+     resources :items, only: [:index, :new, :create, :show, :update, :edit]
+     resources :genres, only: [:index, :new, :create, :update, :edit]
      resources :customers, only: [:index, :show, :update, :edit]
      resources :orders, only: [:update, :show]
-     get "/" => "homes#top"
+     root  "homes#top"
    end
-   
-   
+
+
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm

@@ -12,25 +12,30 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      redirect_to admin_genres_path(@genre), notice: "You have created book successfully."
+      flash[:notice] = "投稿が成功しました"
+      redirect_to admin_genres_path
     else
       @genre = Genre.all
       render 'index'
     end
   end
 
+   def edit
+     @genre = Genre.find(params[:id])
+   end
+
   def update
      @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-      redirect_to admin_genres_path(@genre), notice: "You have updated book successfully."
+      flash[:notice] = "編集が成功しました"
+      redirect_to admin_genres_path(@genre)
     else
+      @genre = Genre.find(params[:id])
       render "edit"
     end
   end
 
-  def edit
-     @genre = Genre.find(params[:id])
-  end
+
 
    private
 
