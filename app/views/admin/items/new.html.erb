@@ -1,4 +1,17 @@
 <h1>Item new</h1>
+<!--投稿失敗時のメッセージ-->
+<% if @item.errors.any? %>
+  <%= @item.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <!--共有テンプレート-->
 <%= render 'input', item: @item %>
+<!--前のページに戻る-->
+<%= link_to :back do %>
+ <button>戻る</button>
+<% end %>
