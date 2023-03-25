@@ -22,7 +22,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  #顧客
   scope module: :public do
      resources :items, only: [:index, :show]
-     resources :cart_item, only: [:new, :create, :index, :show, :destroy]
+     resources :cart_items, only: [:new, :create, :index, :show, :destroy]
       delete "cart_items/destroy_all" => "cart_items#destroy_all"
 
 
@@ -44,8 +44,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      resources :orders, only: [:update, :show]
      get "/" => "homes#top"
    end
-   
-   
+
+
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
