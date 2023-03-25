@@ -1,11 +1,24 @@
-<h1>ジャンンル</h1>
+<h1>ジャンル.一覧画面</h1>
 
+<%= flash[:notice] %>
 <!--ジャンル作成-->
 <%= render 'form', genre: @genre %>
 
   <!--ジャンル一覧-->
+  <table>
   <% @genres.each do |genre| %>
-  <%= name %>
-  <%= id %>
+  <thead>
+    <tr>
+      <th>ジャンル</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><%= genre.name %></th>
+      <td><%= link_to "編集", edit_admin_genre_path(genre.id) %> </td>
+    </tr>
+  </tbody>
+
+
 
 <% end %>

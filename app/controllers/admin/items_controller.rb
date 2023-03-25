@@ -12,7 +12,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       flash[:notice] = "投稿が成功しました"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item)
     else
       flash[:genre_created_error] = "ジャンル名を入力してください"
       render :new
@@ -23,7 +23,7 @@ class Admin::ItemsController < ApplicationController
     end
 
     def edit
-      @item = Item.find(params[:id])
+      @item = Item.find_by(params[:id])
     end
 
   def update
@@ -41,7 +41,7 @@ class Admin::ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:genre_id, :name, :text, :status, :price, :itm_imag_url)#ジャンルid・名前・文・状態・税込価格・写真
+    params.require(:item).permit(:genre_id, :name, :text, :is_sales_status, :price, :itm_imag_url)#ジャンルid・名前・文・状態・税込価格・写真
   end
 
 end
