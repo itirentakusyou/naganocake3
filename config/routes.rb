@@ -1,29 +1,67 @@
 Rails.application.routes.draw do
-  
-  root to: 'homes#top'
+
+
+
+
   get "homes/about" => "homes#about", as: "about"
-  devise_for :admins
-  devise_for :customers
-  devise_for :users
-  #顧客
-  resources :items, only: [:index, :show]
-  resources :cart_item, only: [:new, :create, :index, :show, :destroy]do
-    delete 'desstroy_all'
-  end
+
+
+# 顧客用
+# URL /customers/sign_in ...
+devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+# 管理者用
+# URL /admin/sign_in ...
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
+
+ #顧客
+  scope module: :public do
+   root "homes#top" 
+   
+    # 会員
+      get "customers/out" => "customers#out" #顧客の退会確認画面
+      patch "customers/withdraw" => "customers#withdraw" #顧客の退会処理(ステータスの更新)
+      get "customers/my_page" => "customers#show"
+      get "customers/information/edit" => "customers#edit"
+      patch "customers/information" => "customers#update"
+    
+    #商品
+     resources :items, only: [:index, :show]
+
+     resources :cart_items, only: [:new, :create, :index, :show, :destroy]
+     delete "cart_items/destroy_all" => "cart_items#destroy_all"
+
   
-  resources :orders, only: [:new, :create, :index, :show,]do
-    post 'confirm'
-    get 'thanks'
+   #注文
+    resources :orders, only: [:new, :create, :index, :show]
+    post "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
+ 
+   #配送先
+    resources :addresses, only: [:create, :index, :edit, :update, :destroy]
+   
+   
+
   end
-  
-   resources :addresses, only: [:create, :index, :edit, :uodate, :destroy]
+
+
    #管理者
    namespace :admin do
-     resources :items, only: [:index, :show, :new, :create, :update, :edit]
-     resources :genres, only: [:index, :create, :update, :edit]
+     resources :items, only: [:index, :new, :create, :show, :update, :edit]
+     resources :genres, only: [:index, :new, :create, :update, :edit]
      resources :customers, only: [:index, :show, :update, :edit]
      resources :orders, only: [:update, :show]
+     root  "homes#top"
    end
-   
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+
+
+
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
 end
+
