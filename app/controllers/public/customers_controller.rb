@@ -9,9 +9,18 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
+  	#%@customer = current_customer
+  	#%@customer.update(customer_params)
+  	#%redirect_to  customers_my_page_path 
+  	
   	@customer = current_customer
-  	@customer.update(customer_params)
-  	redirect_to public_customers_path
+    if @customer.update(customer_params)
+      flash[:success] = "個人情報を編集しました"
+      redirect_to  customers_my_page_path
+    else
+      flash[:danger] = '個人情報の編集に失敗しました'
+      render :edit
+    end
   end
 
   def withdraw
@@ -29,7 +38,7 @@ class Public::CustomersController < ApplicationController
   
  private
   def customer_params
-   	params.require(:member).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :phone_number, :withdrawal_status, :email)
+   	params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :tel, :is_deleted, :email)
   end
 
 end
