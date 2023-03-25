@@ -32,10 +32,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     
     #商品
      resources :items, only: [:index, :show]
-     
-    #カート内アイテム
-     resources :cart_item, only: [:new, :create, :index, :show, :destroy]
-      delete "cart_items/destroy_all" => "cart_items#destroy_all"
+
+     resources :cart_items, only: [:new, :create, :index, :show, :destroy]
+     delete "cart_items/destroy_all" => "cart_items#destroy_all"
 
   
    #注文
