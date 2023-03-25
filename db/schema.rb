@@ -74,14 +74,14 @@ ActiveRecord::Schema.define(version: 2023_03_21_071153) do
     t.string "post_code"
     t.string "address"
     t.string "tel"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
-  create_table "genre", force: :cascade do |t|
+  create_table "genres", force: :cascade do |t| 
     t.integer "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

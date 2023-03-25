@@ -15,16 +15,17 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
+    @customer = current_customer
+    @customer.is_deleted= true
+    if @customer.save
+      reset_session
+      redirect_to root_path
+    end
   end
 
-  # ユーザーの退会（論理削除）=> "物理削除"ではないためupdateを使用している。
-  def destroy
-    #is_deletedカラムにフラグを立てる(defaultはfalse)
-    current_customer.update(is_deleted: true, withdraw_status: 1)
-    #ログアウトさせる
-    reset_session
-    redirect_to root_path
-  end
+ 
+  
+  
   
  private
   def customer_params
