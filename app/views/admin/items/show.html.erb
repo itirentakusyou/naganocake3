@@ -2,10 +2,51 @@
 <%= flash[:notice] %>
 <!--編集画面表示-->
 
-
-
-
+<div class="row">
+<div class="col-xs-12">
+ <table class="table table-hover ">
+  <thead></thead>
+  <tbody>
+  <tr>
+     <th>商品名</th>
+      <td><%= @item.name %></td>
+  </tr>
+  <tr>
+    <th>商品説明</th>
+    <td><%= @item.text %></td>
+   </tr>
+   <tr>
+     <th>ジャンル</th>
+     <td><%= @item.genre.name %></td>
+    </tr>
+    <tr>
+      <th>税込価格</th>
+      <td><%= @item.price %></td>
+    </tr>
+    <tr>
+      <th>販売状況</th>
+      <td>
+      <% if @item.is_sales_status == false %>
+        販売中
+      <% else %>
+        販売停止中
+      <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+       <%= link_to edit_admin_item_path(@item.id) ,class: "col-xs-2 pull-right btn-lg btn-success " do %>
+           編集
+       <% end %>
+      </th>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
 <!--一つ前のページに戻る-->
-<%= link_to :back do %>
-  <button>戻る</button>
+<div>
+<%= link_to admin_items_path do %>
+  <button>商品一覧画面</button>
 <% end %>
+</div>

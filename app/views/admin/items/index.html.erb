@@ -1,8 +1,10 @@
-<h1>Item index</h1>
+<h1>商品一覧</h1>
 <!--投稿成功時のメッセージ-->
 <%= flash[:notice] %>
 
-<table>
+<div class="row">
+<div class="col-xs-12">
+ <table class="table table-hover ">
   <thead>
     <th center>
 <!--newページへのリンク-->
@@ -31,6 +33,7 @@
       <% end %>
     </td>
     <td><%= item.price %></td>
+    <td><%= item.genre.name %></td>
     <td>
       <% if item.is_sales_status == false %>
         販売中

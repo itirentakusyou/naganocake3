@@ -17,6 +17,7 @@ class Admin::ItemsController < ApplicationController
       flash[:genre_created_error] = "ジャンル名を入力してください"
       render :new
     end
+  end
 
     def show
       @item = Item.find(params[:id])
@@ -37,7 +38,6 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
-  end
 
   private
   def item_params
