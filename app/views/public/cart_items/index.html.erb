@@ -1,10 +1,10 @@
 <section class="inner">
 	<h2 class="section-ttl">ショッピングカート</h2>
 	<% if @cart_items.first %>
-		<div class="text-right mb2">
+		<div class="text-right mb-2">
 			<%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, "data-confirm" => "カートを空にします。よろしいでしょうか？", class: "btn btn-danger" %>
 		</div>
-		<table class="cart_items has_border mb3">
+		<table class="cart_items has_border mb-3">
 			<thead>
 				<tr>
 					<th colspan="2">商品名</th>
@@ -19,7 +19,7 @@
 					<% item = cart_item.item %>
 					<tr>
 						<td>
-							<%= image_tag item.get_image, class: "cart_item_image" %>
+							<%= image_tag item.itm_image_url, class: "cart_item_image" %>
 						</td>
 						<td><%= link_to item.name, item_path(item) %></td>
 						<td class="text-right"><%= item.with_tax_price %>円</td>
@@ -31,7 +31,7 @@
 						</td>
 						<td class="text-right"><%= cart_item.subtotal %>円</td>
 						<td class="text-center">
-							<%= link_to "削除", item_cart_item_path(item_id: item.id, id: cart_item.id), method: :delete, "data-confirm" => "#{item.name}をカートから削除します。よろしいでしょうか？", class: "btn btn-danger", id: "destroy_cart_item_#{cart_item.id}" %>
+							<%= link_to "削除", cart_item_path(item_id: item.id, id: cart_item.id), method: :delete, "data-confirm" => "#{item.name}をカートから削除します。よろしいでしょうか？", class: "btn btn-danger", id: "destroy_cart_item_#{cart_item.id}" %>
 						</td>
 					</tr>
 				<% end %>
