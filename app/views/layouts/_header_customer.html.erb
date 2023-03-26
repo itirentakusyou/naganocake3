@@ -1,0 +1,21 @@
+<nav class="nav navbar-nav">
+  <span class="client-name  login-client-name">
+    ようこそ、<%= current_customer.first_name %><%= current_customer.last_name %>さん！
+  </span>
+  </nav>
+  <nav>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="">
+        <%= link_to customers_my_page_path(current_customer),class:"nav-item" do %><i class="fas fa-user"></i>マイページ<% end %>
+      </li>
+      <li>
+        <%= link_to admin_items_path,class:"nav-item" do %><i class="fas fa-gift"></i>商品一覧<% end %>
+      </li>
+      <li>
+        <%= link_to cart_items_path,class:"nav-item" do %><i class="fas fa-cart-plus"></i>カート<% end %>
+      </li>
+      <li>
+        <%= link_to destroy_customer_session_path,class:"nav-item", method: :delete do %><i class="fas fa-arrow-right"></i>ログアウト<% end %>
+      </li>
+    </ul>
+  </nav>
