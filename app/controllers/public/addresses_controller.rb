@@ -12,7 +12,7 @@ class Public::AddressesController < ApplicationController
     def create
         @shipping_address = Address.new(address_params)
         @shipping_address.customer_id = current_customer.id
-        if @shipping_address.save
+        if @shipping_address.save!
             redirect_to addresses_path
             flash[:success] = "登録しました。"
         else
@@ -43,7 +43,7 @@ class Public::AddressesController < ApplicationController
 
     private
     def address_params
-        params.require(:address).permit(:customer_id, :name, :postal_code, :address)
+        params.require(:address).permit(:customer_id, :name, :post_code, :address)
     end
 
 end
