@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2023_03_21_071153) do
     t.string "post_code"
     t.string "address"
     t.string "tel"
-    t.boolean "is_deleted", default: false
+    t.boolean "is_deleted"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2023_03_21_071153) do
   end
 
   create_table "genres", force: :cascade do |t|
+
     t.integer "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -99,7 +100,7 @@ ActiveRecord::Schema.define(version: 2023_03_21_071153) do
     t.integer "genre_id"
     t.string "name"
     t.text "text"
-    t.boolean "status"
+    t.boolean "is_sales_status", default: false, null: false
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
