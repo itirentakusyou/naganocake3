@@ -5,7 +5,7 @@
 <%= form_with model: [:admin,item] do |f| %>
 <thead>
   </thead>
-  <tbody></tbody>
+  <tbody>
   <tr>
     <th scope="row">画像</th>
    <td><%= f.file_field :itm_imag_url %></td>
@@ -28,12 +28,16 @@
   </tr>
   <tr>
     <th scope="row">販売ジャンル</th>
-    <td> <%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %></td></td>
+    <td> <%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %></td>
   </tr>
-  <th scope="row"></th>
-  <td>
-    <%= f.submit  %>
-  </td>
+  <tr>
+    <th scope="row"></th>
+    <td>
+     <%= f.submit class: "col-xs-2 pull-right btn-lg btn-success "  %>
+    </td>
+  </tr>
 
-    </tbody>
+  </tbody>
+    
   <% end %>
+  </table>
