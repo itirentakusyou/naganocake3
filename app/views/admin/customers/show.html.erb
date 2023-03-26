@@ -1,9 +1,9 @@
-顧客詳細情報
+
 
 <div class="container">
   <div class="row my-3">
     <div class="col-sm-8 px-sm-0 offset-sm-1">
-      <h2><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h2>
+      <h2 style="background-color:#F5F5F5;"><%= @customer.first_name + @customer.last_name %>さんの会員詳細</h2>
     </div>
   </div>
   <div class="row">
@@ -51,7 +51,7 @@
   <div class="row mb-2">
     <div class="col-lg-6 px-sm-0 offset-sm-1">
       <%= link_to "編集する", edit_admin_customer_path(@customer.id), class:"btn btn-success my-1 mx-4 px-4" %>
-      <%#<%= link_to "注文履歴一覧を見る", admin_path(id: @customer), class:"btn btn-primary mx-4 px-4" %>
+      <%= link_to "注文履歴一覧を見る", orders_path, class:"btn btn-primary mx-4 px-4" %>
     </div>
   </div>
 

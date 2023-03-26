@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-
-  get "homes/about" => "homes#about", as: "about"
-
-
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -21,7 +15,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
  #顧客
   scope module: :public do
-   root "homes#top"
+
+   root "homes#top" 
+   get "homes/about" => "homes#about", as: "about"
+
 
     # 会員
       get "customers/out" => "customers#out" #顧客の退会確認画面
