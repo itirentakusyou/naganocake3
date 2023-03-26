@@ -12,8 +12,10 @@ class Public::AddressesController < ApplicationController
     def create
         @shipping_address = Address.new(address_params)
         @shipping_address.customer_id = current_customer.id
+
         if @shipping_address.save!
             redirect_to addresses_path
+
             flash[:success] = "登録しました。"
         else
             @shipping_address = Address.new
@@ -26,7 +28,9 @@ class Public::AddressesController < ApplicationController
     def destroy
         shipping_address = Address.find(params[:id])
         shipping_address.destroy
+
         redirect_to addresses_path
+
     end
 
     # 配送先編集ボタン
@@ -36,6 +40,7 @@ class Public::AddressesController < ApplicationController
 
     # 配送先編集保存ボタン
     def update
+
         address = Address.find(params[:id])
         address.update(address_params)
         redirect_to addresses_path
@@ -44,6 +49,7 @@ class Public::AddressesController < ApplicationController
     private
     def address_params
         params.require(:address).permit(:customer_id, :name, :post_code, :address)
+
     end
 
 end

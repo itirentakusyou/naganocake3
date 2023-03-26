@@ -12,7 +12,9 @@
 <!--共有テンプレート-->
 <%= render 'input', item: @item %>
 <!--前のページに戻る-->
-<!--%= link_to :back do %-->
- <!--button>戻る</button-->
+<div>
+<%= link_to admin_items_path do %>
+ <button>戻る</button>
 
-<!--% end %-->
+<% end %>
+</div>

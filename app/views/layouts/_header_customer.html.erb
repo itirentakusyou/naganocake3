@@ -6,10 +6,10 @@
   <nav>
     <ul class="nav navbar-nav navbar-right">
       <li class="">
-        <%= link_to customers_my_page_path(current_customer),class:"nav-item" do %><i class="fas fa-user"></i>マイページ<% end %>
+        <%= link_to customers_my_page_path,class:"nav-item" do %><i class="fas fa-user"></i>マイページ<% end %>
       </li>
       <li>
-        <%= link_to admin_items_path,class:"nav-item" do %><i class="fas fa-gift"></i>商品一覧<% end %>
+        <%= link_to items_path,class:"nav-item" do %><i class="fas fa-gift"></i>商品一覧<% end %>
       </li>
       <li>
         <%= link_to cart_items_path,class:"nav-item" do %><i class="fas fa-cart-plus"></i>カート<% end %>
