@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 2023_03_21_071153) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "item_id"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -82,7 +90,8 @@ ActiveRecord::Schema.define(version: 2023_03_21_071153) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
+
+    t.integer "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -101,7 +110,7 @@ ActiveRecord::Schema.define(version: 2023_03_21_071153) do
     t.integer "item_id"
     t.integer "order_id"
     t.integer "quantity"
-    t.integer "making_status"
+    t.integer "making_status", default: 0
     t.integer "purchase_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -115,7 +124,7 @@ ActiveRecord::Schema.define(version: 2023_03_21_071153) do
     t.integer "total_cost"
     t.integer "postage"
     t.integer "payment_method"
-    t.integer "order_status"
+    t.integer "order_status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
