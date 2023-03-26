@@ -1,7 +1,7 @@
 <div class= "admin-header">
   <div class= "admin-nav-bars">
       <nav class="nav navbar-brand navbar-left header-logo">   
-      <%#<%= link_to admins_root_path,class:"header-logo-letter" do %><%#<%= image_tag('logo.png', class: 'admin_shop_logo') %><% end %>
+      <%#<%= link_to admins_root_path,class:"header-logo-letter" do %><%#<%= image_tag('logo.png', class: 'admin_shop_logo') %><%#<% end %>
     </nav>
     <nav class="nav navbar-nav">
       <span class="adjust"> 
@@ -10,7 +10,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <%= link_to admins_items_path,class:"admin-nav-item" do %><i class="glyphicon glyphicon-user users"></i>&emsp;商品一覧<% end %>
+          <%= link_to admin_items_path,class:"admin-nav-item" do %><i class="glyphicon glyphicon-user users"></i>&emsp;商品一覧<% end %>
         </li>
         <li class="">
           <%= link_to  admin_customers_path,class:"admin-nav-item" do %><i class="glyphicon glyphicon-home home"></i>&emsp;会員一覧<% end %>
@@ -25,3 +25,4 @@
           <%= link_to destroy_admin_session_path,class:"admin-nav-item", method: :delete do %><i class="glyphicon glyphicon-log-out logout"></i>&emsp;ログアウト<% end %>
         </li>
       </ul>
+    </nav>

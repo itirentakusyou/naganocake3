@@ -17,7 +17,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
 
    root "homes#top" 
-   get "homes/about" => "homes#about", as: "about"
+   get "/about" => "homes#about", as: "about"
 
 
     # 会員
