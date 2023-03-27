@@ -71,10 +71,10 @@
           <tbody>
             <% @order_lists.each do |order_list| %>
               <tr class="light-text">
-                <td><%= order_list.item.item_name %></td>
-                <td><%= order_list.item.with_tax %></td>
+                <td><%= order_list.item.name %></td>
+                <td><%= order_list.item.price %></td>
                 <td><%= order_list.quantity %></td>
-                <td><%= order_list.item.with_tax * order_list.quantity %></td>
+                <td><%= order_list.item.price* order_list.quantity %></td>
               </tr>
             <% end %>
           </tbody>
