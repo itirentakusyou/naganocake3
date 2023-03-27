@@ -16,6 +16,7 @@
             <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
+
                 <%#<%= image_tag cart_item.item.get_image(60, 60) %>
                 <%= cart_item.item_id %>
               </td>
@@ -25,6 +26,7 @@
                 <%#<% subtotal = ((cart_item.item.without_tax*cart_item.quantity)*1.10).to_i %>
                 <%#<%= subtotal %>
                 <%#<% sum_of_price += subtotal %>
+
               </td>
             </tr>
             <% end %>
