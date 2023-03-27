@@ -16,7 +16,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  #顧客
   scope module: :public do
 
-   root "homes#top" 
+   root "homes#top"
    get "/about" => "homes#about", as: "about"
 
 
@@ -52,7 +52,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      resources :items, only: [:index, :new, :create, :show, :update, :edit]
      resources :genres, only: [:index, :new, :create, :update, :edit]
      resources :customers, only: [:index, :show, :update, :edit]
-     resources :orders, only: [:update, :show]
+     resources :orders, only: [:update, :show, :index]
      root  "homes#top"
    end
 
