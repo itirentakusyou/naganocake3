@@ -52,7 +52,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      resources :items, only: [:index, :new, :create, :show, :update, :edit]
      resources :genres, only: [:index, :new, :create, :update, :edit]
      resources :customers, only: [:index, :show, :update, :edit]
-     resources :orders, only: [:update, :show, :index]
+
+     resources :orders, only: [:index, :update, :show]
+
      root  "homes#top"
    end
 

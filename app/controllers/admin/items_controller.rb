@@ -41,7 +41,7 @@ class Admin::ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:genre_id, :name, :text, :is_sales_status, :price, :itm_imag_url)#ジャンルid・名前・文・状態・税込価格・写真
+    params.require(:item).permit(:genre_id, :name, :text, :is_sales_status, :price, :itm_image_url)#ジャンルid・名前・文・状態・税込価格・写真
   end
 
 end

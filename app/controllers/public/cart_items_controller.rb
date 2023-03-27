@@ -1,21 +1,27 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_cart_item, only: [:create, :update, :destroy]
-
+ 
   def index
     @cart_items = current_customer.cart_items
   end
 
   def create
-      @cart_item = CartItem.new(cart_item_params)
-       @cart_item.customer_id = current_customer.id
-       @cart_item.item_id = params[:item_id]
-      if @cart_item.save
-        redirect_to cart_items_path
-      else
-        render 'public/items/show'
-      end
-     end
+
+    #if @cart_item
+      #new_amount = @cart_item.amount + cart_item_params[:amount]
+      #@cart_item.update(amount: new_amount)
+      #redirect_to cart_items_path
+    #else
+     # @cart_item = current_customer.cart_items.new(cart_item_params)
+      #@cart_item.item_id = @item.id
+      #if @cart_item.save
+        #redirect_to cart_items_path
+      #else
+        #render 'public/items/show'
+      #end
+    #end
+  end
+
 
   def update
     @cart_item.update(cart_item_params) if @cart_item
@@ -37,5 +43,6 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :customer_id)
   end
+
 
 end
