@@ -11,6 +11,6 @@ class Public::ItemsController < ApplicationController
 
   private
   def items_params
-    parmas.require(:item).permit(:genle_id, :name, :introduction, :price, :is_active, :image_id)
+    parmas.require(:item).permit(:genle_id, :name, :text, :price, :is_sales_status, :itm_image_url)
   end
 end
