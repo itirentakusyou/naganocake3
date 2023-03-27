@@ -6,6 +6,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+
     #if @cart_item
       #new_amount = @cart_item.amount + cart_item_params[:amount]
       #@cart_item.update(amount: new_amount)
@@ -20,6 +21,7 @@ class Public::CartItemsController < ApplicationController
       #end
     #end
   end
+
 
   def update
     @cart_item.update(cart_item_params) if @cart_item
@@ -39,8 +41,8 @@ class Public::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:amount)
+    params.require(:cart_item).permit(:item_id, :customer_id)
   end
 
-  
+
 end
