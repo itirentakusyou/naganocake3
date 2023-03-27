@@ -41,8 +41,11 @@ class Public::OrdersController < ApplicationController
         @order_detail = @order.order_details.new
         @order_detail.order_id = @order.id
         @order_detail.item_id = cart_item.item_id
+
+        #@order_detail.price = cart_item.item.with_tax
         @order_detail.quantity = cart_item.quantity
-       
+        #@order_detail.making_status = "waiting_start"
+
 
         @order_detail.save
       end
