@@ -2,7 +2,7 @@
 	<h2 class="section-ttl">ショッピングカート</h2>
 	<% if @cart_items.first %>
 		<div class="text-right mb-2">
-			<%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, "data-confirm" => "カートを空にします。よろしいでしょうか？", class: "btn btn-danger" %>
+			<!--%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, "data-confirm" => "カートを空にします。よろしいでしょうか？", class: "btn btn-danger" %-->
 		</div>
 		<table class="cart_items has_border mb-3">
 			<thead>
@@ -15,29 +15,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @cart_items.each do |cart_item| %>
-					<% item = cart_item.item %>
-					<tr>
-						<td>
-							<%= image_tag item.itm_image_url, class: "cart_item_image" %>
-						</td>
-						<td><%= link_to item.name, item_path(item) %></td>
-						<td class="text-right"><%= item.with_tax_price %>円</td>
-						<td>
-							<%= form_with model: [item, cart_item] do |f| %>
-								<%= f.select :amount, [*(1..10)], {include_blank: false}, id: "cart_item_amount_#{cart_item.id}" %>
-								<%= f.submit "変更", class: "btn btn-primary", id: "submit_for_cart_item_#{cart_item.id}" %>
-							<% end %>
-						</td>
-						<td class="text-right"><%= cart_item.subtotal %>円</td>
-						<td class="text-center">
-							<%= link_to "削除", cart_item_path(item_id: item.id, id: cart_item.id), method: :delete, "data-confirm" => "#{item.name}をカートから削除します。よろしいでしょうか？", class: "btn btn-danger", id: "destroy_cart_item_#{cart_item.id}" %>
-						</td>
-					</tr>
-				<% end %>
+		
 				<tr>
 					<td></td>
-					<td><%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %></td>
+					<td><%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %></td>
 					<td></td>
 					<td class="text-right">合計金額</td>
 					<td class="text-right bold"><%= @cart_items.sum(&:subtotal) %>円</td>
