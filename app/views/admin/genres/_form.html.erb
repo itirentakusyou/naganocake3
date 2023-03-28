@@ -1,4 +1,4 @@
-<%= form_with model: genre, url: admin_genres_path do |f| %>
+<%= form_with model: [:admin,genre] do |f| %>
 
   <div class="field">
     <%= f.label :name, "ジャンル名" %>
