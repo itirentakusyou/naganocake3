@@ -34,6 +34,9 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    @order.postage = 800
+    @cart_items = current_customer.cart_items #ログインしているユーザーのカートの中身
+    @order.total_cost = @order.postage + @cart_items.sum(&:subtotal) #subtotalの合計（cart_item.rbで定義)
     if @order.save
       @cart_items = current_customer.cart_items
 
@@ -41,12 +44,9 @@ class Public::OrdersController < ApplicationController
         @order_detail = @order.order_details.new
         @order_detail.order_id = @order.id
         @order_detail.item_id = cart_item.item_id
-
-        #@order_detail.price = cart_item.item.with_tax
+        @order_detail.purchase_price = cart_item.item.with_tax_price
         @order_detail.quantity = cart_item.quantity
-        #@order_detail.making_status = "waiting_start"
-
-
+         #order_detail.making_status = "waiting_start"
         @order_detail.save
       end
 

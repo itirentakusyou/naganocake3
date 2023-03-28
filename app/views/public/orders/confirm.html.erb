@@ -25,11 +25,7 @@
               <td class= "align-middle"><%= cart_item.item.price %></td>
               <td class= "align-middle"><%= cart_item.quantity %></td>
               <td class= "align-middle"><%= (cart_item.item.price)*(cart_item.quantity) %></td>
-              <td class= "align-middle">
-                <%= total_price = ((cart_item.item.price)*(cart_item.quantity)*1.10).to_i %>
-                <%#<%= total_price %>
-                <%#<%= sum_of_price += total_price %>
-              </td>
+             
             </tr>
             <% end %>
           </tbody>
@@ -48,14 +44,15 @@
               </tr>
               <tr>
                 <td class= "table-secondary">商品合計</td>
-                  <%#<%= total_price = ((@order.item.price)*(@order.quantity)*1.10).to_i %>
-               <%# <td><%= sum_of_ %>
+                 <td>
+                   <%= @cart_items.sum(&:subtotal) %>
+                </td>
               </tr>
               <tr>
                 <td class= "table-secondary">請求金額</td>
                 <td>
-                  <%= sum_of_price + @order.postage %>
-                  <%= f.hidden_field :total, :value => sum_of_price + @order.postage %>
+                  <%= @cart_items.sum(&:subtotal) +  @order.postage %>
+                  
                 </td>
               </tr>
             </tbody>
