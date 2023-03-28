@@ -5,7 +5,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items = current_customer.cart_items
   end
 
-  
+
 
 
 
@@ -35,7 +35,7 @@ class Public::CartItemsController < ApplicationController
         #render 'public/items/show'
       #end
     #end
-  
+
 
 
   def update
