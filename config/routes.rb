@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-
-  get "homes/about" => "homes#about", as: "about"
-
-
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -21,31 +15,35 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
  #顧客
   scope module: :public do
-   root "homes#top" 
-   
+
+   root "homes#top"
+   get "/about" => "homes#about", as: "about"
+
+
     # 会員
       get "customers/out" => "customers#out" #顧客の退会確認画面
       patch "customers/withdraw" => "customers#withdraw" #顧客の退会処理(ステータスの更新)
       get "customers/my_page" => "customers#show"
       get "customers/information/edit" => "customers#edit"
       patch "customers/information" => "customers#update"
-    
+
     #商品
      resources :items, only: [:index, :show]
 
-     resources :cart_items, only: [:new, :create, :index, :show, :destroy]
      delete "cart_items/destroy_all" => "cart_items#destroy_all"
+     resources :cart_items, only: [:new, :create, :index, :show, :destroy,:update]
 
-  
+
+
    #注文
+   get "orders/complete" => "orders#complete"
     resources :orders, only: [:new, :create, :index, :show]
     post "orders/confirm" => "orders#confirm"
-    get "orders/complete" => "orders#complete"
- 
+
    #配送先
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
-   
-   
+
+
 
   end
 
@@ -55,7 +53,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      resources :items, only: [:index, :new, :create, :show, :update, :edit]
      resources :genres, only: [:index, :new, :create, :update, :edit]
      resources :customers, only: [:index, :show, :update, :edit]
-     resources :orders, only: [:update, :show]
+
+     resources :orders, only: [:index, :update, :show]
+
      root  "homes#top"
    end
 

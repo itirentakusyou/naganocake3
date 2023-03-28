@@ -1,11 +1,12 @@
 <%= form_with model: [:admin,genre] do |f| %>
 
   <div class="field">
-    <%= f.label :name, "ジャンル名"
-    <%= f.text_field :name%>
+    <%= f.label :name, "ジャンル名" %>
+    <%= f.text_field :name %>
   </div>
 
   <div class="submit">
     <%= f.submit %>
   </div>
   <% end %>
+

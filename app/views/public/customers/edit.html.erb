@@ -1,9 +1,9 @@
-会員情報編集機能
+
 
 <div class="row login-row"> 
 	<div class = "body" style>
 		<div class = "container">
-			<h2>登録情報編集</h2>
+			<h2 style="background-color:#F5F5F5;">登録情報編集</h2>
 
 				<%= form_with model: @customer,url:customers_information_path do |f| %> 
 
@@ -44,7 +44,7 @@
 
 				    <%= f.submit "編集内容を保存する", class: "btn btn-primary"%>
 			<% end %>
-				<%= link_to "退会する", customers_out_path, class: "btn btn-danger withdrawal_page_btn"%>
+				<%= link_to "退会する", customers_out_path, class: "btn btn-danger withdraw_page_btn"%>
 		</div>
 	</div>
 </div>

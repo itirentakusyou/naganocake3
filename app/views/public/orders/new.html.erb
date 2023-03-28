@@ -6,10 +6,10 @@
   <div class= "payment">
     <div class="col-2 col-form-label"><b>支払方法</b></div>
     <div class="col-10 form-group">
-      <%= f.radio_button :payment_method, 'credit_card' %>
-      <%= f.label :payment_method, 'クレジットカード' %><br>
-      <%= f.radio_button :payment_method, 'transfer' %>
-      <%= f.label :payment_method, '銀行振込' %>
+      <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %><br>
+      <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
     </div>
   </div>
   <div class= "delivery">
@@ -24,7 +24,7 @@
     <div class="col-10 form-group">
       <%= f.radio_button :select_address, 1 %>
       <%= f.label :record_address, '登録済住所から選択' %><br>
-      <%= f.select :address_id, options_from_collection_for_select(current_customer.deliveries, :id, :address_display) %>
+      <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address) %>
     </div>
     <div class="col-10 form-group">
       <%= f.radio_button :select_address, 2 %>

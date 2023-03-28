@@ -1,20 +1,46 @@
 
+<div class="container mt-5 mb-5">
+ <div class="row my-3">
+
+
 
 <!--新規投稿・editページの共有-->
-
 <%= form_with model: [:admin,item] do |f| %>
-   <h4>画像</h4>
-     <%= f.file_field :itm_imag_url %>
-    <h4>商品名</h4>
-      <%= f.text_field :name %>
-    <h4>詳細文</h4>
-      <%= f.text_area :text %>
-    <h4>税込価格</h4>
-    <%= f.text_field :price %>
-    <h4>販売状況</h4>
-    <%= f.select :is_sales_status, [["販売中","false"], ["販売不可","true"]], include_blank: "--選択してください--" %>
-    <h4>販売ジャンル</h4>
-     <!--%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %-->
+<table class="table">
+<thead>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">画像</th>
+   <td><%= f.file_field :itm_image_url,accept:'itm_image_url/*' %></td>
+  </tr>
+  <tr>
+    <th scope="row">商品名</th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th scope="row">商品説明</th>
+    <td><%= f.text_area :text %></td>
+  </tr>
+   <tr>
+    <th scope="row">税込価格</th>
+    <td><%= f.text_field :price %></td>
+  </tr>
+  <tr>
+    <th scope="row">販売状況</th>
+    <td><%= f.select :is_sales_status, [["販売中","false"], ["販売不可","true"]], include_blank: "--選択してください--" %></td>
+  </tr>
+  <tr>
+    <th scope="row">販売ジャンル</th>
+    <td> <%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %></td>
+  </tr>
 
-    <%= f.submit  %>
+ </tbody>
+</table>
+ <div>
+     <%= f.submit class: "col-xs-2 pull-right btn-lg btn-success "  %>
+ </div>
   <% end %>
+ </div>
+</div>
+

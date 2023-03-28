@@ -1,0 +1,19 @@
+<nav>
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <%= link_to about_path,class:"nav-item" do %><i class="fas fa-store-alt"></i>About<% end %>
+    </li>
+
+    <li>
+
+    <%= link_to items_path ,class:"nav-item" do %><i class="fas fa-gift"></i>商品一覧<% end %>
+
+    </li>
+    <li>
+      <%= link_to new_customer_registration_path ,class:"nav-item" do %><i class="fas fa-user-plus"></i>新規登録<% end %>
+    </li>
+    <li>
+      <%= link_to new_customer_session_path ,class:"nav-item" do %><i class="fas fa-check"></i>ログイン<% end %>
+    </li>
+  </ul>
+</nav>

@@ -1,8 +1,10 @@
-<h1>Item index</h1>
+<h1>商品一覧</h1>
 <!--投稿成功時のメッセージ-->
 <%= flash[:notice] %>
 
-<table>
+<div class="row">
+<div class="col-xs-12">
+ <table class="table table-hover ">
   <thead>
     <th center>
 <!--newページへのリンク-->
@@ -14,32 +16,32 @@
 
 
 <tbody>
-  <th>
-    <td>商品画像</td>
+  <tr>
+    <th>商品ID</th>
     <td>商品名</td>
-    <td>詳細文</td>
     <td>税込価格</td>
+    <td>ジャンル</td>
     <td>販売状況</td>
-  </th>
+  </tr>
   <% @items.each do |item| %>
-  <th>
-   <td>
-  <!--画像挿入-->
-  <% if @item.image.attached? %> <!--画像を持っているかのチェック-->
-  <%= image_tag item.image, size: "100*100" %>
-  <% end %>
-    </td>
-
+  <tr>
     <!--showページへのリンク-->
+    <th><%= item.id %></th>
     <td>
-      <%=link_to item_path(:id) do %>
+      <%=link_to admin_item_path(item.id) do %>
       <%= item.name %>
       <% end %>
-      </td>
-    <td><%= item.text %></td>
+    </td>
     <td><%= item.price %></td>
-    <td><%= item.status %></td>
-  </th>
+    <td><%= item.genre.name %></td>
+    <td>
+      <% if item.is_sales_status == false %>
+        販売中
+      <% else %>
+        販売停止中
+      <% end %>
+    </td>
+  </tr>
   <% end %>
 </tbody>
 </table>

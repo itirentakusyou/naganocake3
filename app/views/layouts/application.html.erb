@@ -1,30 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Naganocake3</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://kit.fontawesome.com/5667bc939f.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
 
-  <body>
-     <header>
-    <% if customer_signed_in? %>
-      <li>
-        <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン",  new_customer_session_path %>
-      </li>
-    <% end %>
-  </header>
-    <%= yield %>
+ <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-right">
+        <div class="container">
+          <%#<a class="navbar-brand" href="/"><%= image_tag "logo3.png", :size => "240x50" %></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          　<h1>NaganoCake</h1>
+            <ul class="navbar-nav ms-auto">
+              <!--adminログイン時のヘッダー-->
+            <% if admin_signed_in? %>
+             <%= render 'layouts/header_admin' %>
+
+            <!--customersログイン時のヘッダー-->
+            <% elsif customer_signed_in? %>
+             <%= render 'layouts/header_customer' %>
+            <% else %>
+            <!--ログイン前時のヘッダー-->
+             <%= render 'layouts/header_logout' %>
+           <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+  			<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+        <% flash.each do |key, value| %>
+          <p class="alert alert-<%= key %>">
+            <%= sanitize value, tags: %w(br) %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <main>
+      <%= yield %>
+    </main>
+    
+    <footer>
+      <%#<%= render "layouts/footer" %>
+    </footer>
   </body>
 </html>
+
