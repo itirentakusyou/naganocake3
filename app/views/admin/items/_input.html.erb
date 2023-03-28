@@ -5,8 +5,8 @@
 
 
 <!--新規投稿・editページの共有-->
-<table class="table">
 <%= form_with model: [:admin,item] do |f| %>
+<table class="table">
 <thead>
   </thead>
   <tbody>
@@ -37,8 +37,9 @@
 
  </tbody>
 </table>
- 
+ <div>
      <%= f.submit class: "col-xs-2 pull-right btn-lg btn-success "  %>
+ </div>
   <% end %>
  </div>
 </div>
