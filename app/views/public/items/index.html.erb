@@ -11,6 +11,7 @@
        <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
         <%= link_to item_path(item.id) do %>
           <p class="img-wrap"><%=image_tag item.itm_image_url,size: "180x130" %></p>
+          
           <%#<p class="img-wrap"><%= attachment_image_tag item, :itm_image_url, size: "180x130", fallback: "no_image.jpg" %></p>
        <% end %>
         <%#<div class="card-body">

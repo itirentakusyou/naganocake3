@@ -1,3 +1,5 @@
+<div class="container mt-5 mb-5">
+<div class="row my-3">
 <h1>商品詳細</h1>
 <%= flash[:notice] %>
 <!--編集画面表示-->
@@ -10,6 +12,10 @@
   <tr>
      <th>商品名</th>
       <td><%= @item.name %></td>
+  </tr>
+  <tr>
+     <th>商品画像</th>
+      <td><%= image_tag @item.itm_image_url %></td>
   </tr>
   <tr>
     <th>商品説明</th>
@@ -49,4 +55,6 @@
 <%= link_to admin_items_path do %>
   <button>商品一覧画面</button>
 <% end %>
+</div>
+</div>
 </div>

@@ -9,8 +9,8 @@
       <tr>
         <th>購入者</th>
         <td><%= link_to admin_customer_path(@order.customer) do %>
-        <%= @order.customer.last_name %>
         <%= @order.customer.first_name %>
+        <%= @order.customer.last_name %>
         <% end %>
         </td>
       </tr>
@@ -29,7 +29,7 @@
         <th>注文ステータス</th>
         <td>
         <%= form_for (@order), url:admin_order_path(@order) do |f| %>
-        <%= f.select :order_status,Order.order_statuses.keys.to_a %>
+        <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
         <%= f.submit "更新", class: "btn btn-success" %>
         <% end %>
         </td>
@@ -54,12 +54,14 @@
       <% @order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
-            <td><%= (order_detail.price).floor.to_s(:delimited, delimiter: ',') %></td>
+            <%#<td><%= (order_detail.purchase_price).floor.to_s(:delimited, delimiter: ',') %>
+             <td><%= order_detail.item.price %></td>
             <td><%= order_detail.quantity %></td>
-            <td><%= (order_detail.price * order_detail.quantity).floor.to_s(:delimited, delimiter: ',') %></td>
+            <td><%= order_detail.item.price*  order_detail.quantity %></td>
+            <%#<td><%= (order_detail.purchase_price * order_detail.quantity).floor.to_s(:delimited, delimiter: ',') %>
             <td>
-              <%= form_for (order_detail), url:admins_order_detail_path(order_detail) do |f|  %>
-              <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a %>
+              <%= form_for (order_detail), url:admin_order_path(order_detail) do |f|  %>
+              <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
               <%= f.submit '更新',class:"btn btn-success" %>
               <% end %>
             </td>
@@ -77,7 +79,7 @@
 
           <tr>
             <td>商品合計</td>
-            <%#<td><%= @order.total_cost.to_s(:delimited, delimiter: ',') %></td>
+            <td><%= @order.order_details.sum(&:subtotal).to_s(:delimited, delimiter: ',') %></td>
           </tr>
 
           <tr>
@@ -87,7 +89,7 @@
 
           <tr>
             <td>請求合計金額</td>
-           <%# <td><%= @order.total_payment.to_s(:delimited, delimiter: ',') %></td>
+           <td><%= @order.total_cost.to_s() %></td>
           </tr>
         </tbody>
       </table>

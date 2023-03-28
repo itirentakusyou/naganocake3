@@ -1,4 +1,6 @@
-<h1>Item edit</h1>
+<div class="container mt-5 mb-5">
+<div class="row my-3">
+<h1>商品編集</h1>
 <!--エラー文->
 <% if @item.errors.any? %>
   <%= @item.errors.count %>件のエラーが発生しました
@@ -16,3 +18,5 @@
 <%= link_to :back do %>
   <button>戻る</button>
 <% end %>
+</div>
+</div>

@@ -16,16 +16,16 @@
             <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
-                <%= image_tag cart_item.item.get_image(60, 60) %>
-                <%= cart_item.item.item_name %>
+
+                <%#<%= image_tag cart_item.item.get_image(60, 60) %>
+                <%= cart_item.item.name%>
               </td>
-              <td class= "align-middle"><%= (cart_item.item.without_tax*1.10).to_i %></td>
+           
+             <%# <td class= "align-middle"><%= (cart_item.item.without_tax*1.10).to_i %></td>
+              <td class= "align-middle"><%= cart_item.item.price %></td>
               <td class= "align-middle"><%= cart_item.quantity %></td>
-              <td class= "align-middle">
-                <% subtotal = ((cart_item.item.without_tax*cart_item.quantity)*1.10).to_i %>
-                <%= subtotal %>
-                <% sum_of_price += subtotal %>
-              </td>
+              <td class= "align-middle"><%= (cart_item.item.price)*(cart_item.quantity) %></td>
+             
             </tr>
             <% end %>
           </tbody>
@@ -44,13 +44,15 @@
               </tr>
               <tr>
                 <td class= "table-secondary">商品合計</td>
-                <td><%= sum_of_price %></td>
+                 <td>
+                   <%= @cart_items.sum(&:subtotal) %>
+                </td>
               </tr>
               <tr>
                 <td class= "table-secondary">請求金額</td>
                 <td>
-                  <%= sum_of_price + @order.postage %>
-                  <%= f.hidden_field :total, :value => sum_of_price + @order.postage %>
+                  <%= @cart_items.sum(&:subtotal) +  @order.postage %>
+                  
                 </td>
               </tr>
             </tbody>
